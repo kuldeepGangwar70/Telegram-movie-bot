@@ -1,3 +1,21 @@
+import dotenv from "dotenv";
+dotenv.config();
+
+import TelegramBot from "node-telegram-bot-api";
+
+const token = process.env.TELEGRAM_TOKEN;   // Yeh .env ya Render env se token lega
+
+if (!token) {
+  console.error("❌ Telegram Bot Token not provided!");
+  process.exit(1);
+}
+
+const bot = new TelegramBot(token, { polling: true });
+
+bot.on("message", (msg) => {
+  const chatId = msg.chat.id;
+  bot.sendMessage(chatId, "Bot chal raha hai ✅");
+});
 require('dotenv').config();
 const TelegramBot = require('node-telegram-bot-api');
 const axios = require('axios');
